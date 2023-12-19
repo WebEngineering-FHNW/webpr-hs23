@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>A very procedural example</h1>
+<pre id="out"></pre>
+<script type="module">
+    import { Iterator} from "./iterator/iterator.js";
+    const odds = Iterator(1, n => n <= 11, n => n + 2 );
+    let   blanks = 5;
+    for (const n of odds) {
+        for (let i = blanks; i > 0; i--) {
+            out.textContent += " ";
+        }
+        blanks--;
+        for (let i = 0; i < n; i++) {
+            out.textContent += "*";
+        }
+        out.textContent += "\n";
+    }
+</script>
+</body>
+</html>
