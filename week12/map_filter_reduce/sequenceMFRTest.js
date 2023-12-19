@@ -8,12 +8,12 @@ suite.add("sequence", assert => {
     const numbers  = Walk(1,8);
     const double = n => {
         opsCount++;
-        // console.log("double", n);
+        console.log("double", n);
         return n * 2;
     };
     const below6 = n => {
         opsCount++;
-        // console.log("below6", n);
+        console.log("below6", n);
         return n < 6;
     };
     const result = numbers

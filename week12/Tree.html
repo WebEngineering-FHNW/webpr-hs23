@@ -8,19 +8,16 @@
 <h1>A very procedural example</h1>
 <pre id="out"></pre>
 <script type="module">
-    import { Iterator} from "./iterator/iterator.js";
-    const odds = Iterator(1, n => n <= 11, n => n + 2 );
-    let   blanks = 5;
-    for (const n of odds) {
-        for (let i = blanks; i > 0; i--) {
-            out.textContent += " ";
-        }
-        blanks--;
-        for (let i = 0; i < n; i++) {
-            out.textContent += "*";
-        }
-        out.textContent += "\n";
-    }
+    import * as _ from "../src/kolibri/sequence/sequence.js";
+    import { Walk } from "../src/kolibri/sequence/sequence.js";
+    const toString = _.foldr$((acc, cur) => acc+cur, "");
+    const stars  = odd => _.replicate(odd)("*").pipe(toString);
+    const blanks = odd => _.replicate(11-stars(odd).length/2)(" ").pipe(toString);
+    Walk(1, 11, 2)
+        .reverse$()
+        .map(odd => blanks(odd) + stars(odd) + "\n")
+        .foldr$( (acc, cur) => out.textContent += cur, "");
+
 </script>
 </body>
 </html>
